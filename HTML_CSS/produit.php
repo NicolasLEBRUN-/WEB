@@ -53,38 +53,54 @@
 			
 			<img id="mountains" src="../images/background_mountains.png" 	width="1366px"	height="527px">
 
-			<div id="contenu">
-			</div>
+		<div id="contenu">
+
 		
 		
 
-        <section id="tableau">
+			<section id="tableau">
             
-        <!--<?php
-			require 'params.php';
-			mysql_connect($host,$user,$password) or die('Erreur le connexion à la base de données.');
-			mysql_select_db($base) or die('La base de données n\'existe pas');
-			$query='SELECT *
-					FROM `LISTE_SKI`
-					ORDER BY `REF` ASC ';
-			$r=mysql_query($query);
-			mysql_close();
-			echo '<table border><tr><td>REFERENCE</td><td>NOM</td><td>PRIX</td><td>TAILLE</td><td>DESCRIPTION</td></tr>';
-			while($a=mysql_fetch_object($r))
-			{
-				$REF=$a->REF;
-				$NOM=$a->NOM;
-				$PRIX=$a->PRIX;
-				$TAILLE=$a->TAILLE;
-				$DESC=$a->DESC;
-				echo"<tr><td>$REF</td><td>$NOM</td><td>$PRIX</td><td>$TAILLE</td><td>$DESC</td></tr>";
-			}
-			echo '</table>';
-		?>-->
+				<?php
+					require 'params.php';
+					mysql_connect($host,$user,$password) or die('Erreur le connexion à la base de données.');
+					mysql_select_db($base) or die('La base de données n\'existe pas');
+					$query='SELECT *
+							FROM `LISTE_SKI`
+							ORDER BY `REF` ASC ';
+					$r=mysql_query($query);
+					mysql_close();
+					$i=0;
+					echo '<table id="table_produits">';
+					
+					
+					while($a=mysql_fetch_object($r))
+					{
+						if($i==3)
+						{
+							echo'</tr>';
+							$i=0;
+						}
+						if($i==0)
+						{
+							echo '<tr>';
+						}
+						
+						$REF=$a->REF;
+						$NOM=$a->NOM;
+						$PRIX=$a->PRIX;
+						$TAILLE=$a->TAILLE;
+						$DESC=$a->DESC;
+						echo"<td>$REF <br>$NOM<br>$PRIX<br>$TAILLE<br>$DESC<br></td>";
+						$i++;							
+										
+					}
+					echo '</table>';
+				?> 
         
         
         
-        </section>
+			</section>
+		</div>
         
    </body>
 </html>			
